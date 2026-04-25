@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Solo ou Duo — 3 variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  :root {
+    --navy: #0E2A47;
+    --copper: #B87333;
+    --sand: #D9C7A6;
+    --sand-soft: #E8DCC4;
+    --ivory: #F1E8D8;
+    --gold: #CBA24A;
+    --white: #FDFBF6;
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); color: var(--navy); font-weight: 300; font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .section-title em { font-style: italic; }
+  .section-lede {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(14, 42, 71, 0.78);
+    max-width: 620px;
+    margin: 20px auto 0;
+  }
+
+  .section-head {
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto 64px;
+  }
+  .format-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  .format-title {
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 26px;
+    line-height: 1.15;
+    color: var(--navy);
+  }
+  .format p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(14, 42, 71, 0.82);
+    margin-bottom: 18px;
+  }
+  .format p:last-child { margin-bottom: 0; }
+
+  .solo-duo-question {
+    max-width: 820px;
+    margin: 64px auto 0;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.5;
+    color: var(--navy);
+    font-weight: 300;
+  }
+  .solo-duo-question .line { display: block; }
+  .solo-duo-question .accent { color: var(--copper); }
+  .solo-duo-footnote {
+    max-width: 620px;
+    margin: 28px auto 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(14, 42, 71, 0.72);
+  }
+
+  /* ————— VARIATION A : filet vertical copper, fond ivoire ————— */
+  .var-a { background: var(--ivory); padding: 100px 56px; }
+  .var-a .formats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    max-width: 1180px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+  .var-a .format { padding: 48px 56px; }
+  .var-a .divider { background: var(--copper); opacity: 0.5; }
+
+  /* ————— VARIATION B : fonds alternés, sans filet ————— */
+  .var-b { padding: 100px 0; background: var(--white); }
+  .var-b .section-head { padding: 0 40px; }
+  .var-b .formats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .var-b .format { padding: 72px 64px; }
+  .var-b .format.solo { background: var(--ivory); }
+  .var-b .format.duo { background: var(--sand); }
+  .var-b .solo-duo-question,
+  .var-b .solo-duo-footnote { padding: 0 40px; }
+
+  /* ————— VARIATION C : cards ombrées, coins arrondis, fond clair ————— */
+  .var-c {
+    background: #FAF4E6;
+    padding: 100px 56px;
+  }
+  .var-c .formats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .var-c .format {
+    padding: 56px 48px;
+    background: var(--white);
+    border-radius: 6px;
+    box-shadow:
+      0 1px 2px rgba(14, 42, 71, 0.04),
+      0 12px 32px -8px rgba(14, 42, 71, 0.08),
+      0 40px 80px -20px rgba(14, 42, 71, 0.06);
+  }
+
+  @media (max-width: 820px) {
+    .var-a .formats-grid,
+    .var-b .formats-grid,
+    .var-c .formats-grid { grid-template-columns: 1fr; gap: 0; }
+    .var-a .divider { height: 1px; background: var(--copper); opacity: 0.4; }
+    .var-b .format, .var-a .format, .var-c .format { padding: 48px 24px; }
+    .var-c .formats-grid { gap: 16px; padding: 0 16px; }
+    .section-title { font-size: 32px; }
+    .format-title { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState } = React;
+
+function SectionContent({ variation }) {
+  return (
+    <>
+      <div className="section-head">
+        <h2 className="section-title">Solo ou Duo : <em>choisir l'expérience, pas le tarif.</em></h2>
+        <p className="section-lede">Il y a deux manières de vivre cet atelier. Ce ne sont pas deux tarifs. Ce sont deux expériences pédagogiques différentes.</p>
+      </div>
+      <div className="formats-grid">
+        <div className="format solo">
+          <div className="format-label">— Le format solo —</div>
+          <div className="format-title">Seule avec moi.</div>
+          <p>Tu es seule avec moi pendant 2h30. Tout le temps, toute l'attention, tout l'espace sont pour toi.</p>
+          <p>C'est le format que je recommande si tu es du genre à te mettre en retrait dès qu'il y a quelqu'un d'autre, ou si ton projet photo est très personnel et que tu as besoin d'une bulle pour en parler vraiment.</p>
+        </div>
+        {variation === 'a' && <div className="divider" aria-hidden="true"></div>}
+        <div className="format duo">
+          <div className="format-label">— Le format duo —</div>
+          <div className="format-title">À deux, avec moi.</div>
+          <p>Vous êtes deux, avec moi. Ce n'est pas une version économique du solo. C'est un format qui fonctionne parce qu'il ouvre une dynamique miroir : tu vois comment l'autre regarde, tu es challengée sans être jugée, tu apprends aussi en observant.</p>
+          <p>Ça demande une qualité particulière : être prête à laisser de la place à un autre regard que le tien. Toutes les sensibilités ne sont pas faites pour ça, et c'est très bien.</p>
+        </div>
+      </div>
+      <div className="solo-duo-question">
+        <span className="line">La bonne question n'est pas : «&#8239;Combien je veux payer&#8239;?&#8239;»</span>
+        <span className="line accent">C'est : «&#8239;De quelle expérience j'ai besoin en ce moment&#8239;?&#8239;»</span>
+      </div>
+      <p className="solo-duo-footnote">Si tu hésites, écris-moi avant de réserver. On en discute.</p>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <dc-canvas padding="80">
+      <dc-section id="variation-a" title="Variation A — Filet vertical copper, fond ivoire">
+        <dc-artboard id="a" label="Desktop · 1280 × 980" width="1280" height="980">
+          <section className="var-a">
+            <SectionContent variation="a" />
+          </section>
+        </dc-artboard>
+      </dc-section>
+
+      <dc-section id="variation-b" title="Variation B — Fonds alternés ivoire / sable, sans filet">
+        <dc-artboard id="b" label="Desktop · 1280 × 980" width="1280" height="980">
+          <section className="var-b">
+            <SectionContent variation="b" />
+          </section>
+        </dc-artboard>
+      </dc-section>
+
+      <dc-section id="variation-c" title="Variation C — Cards ombrées, coins arrondis, fond plus clair">
+        <dc-artboard id="c" label="Desktop · 1280 × 980" width="1280" height="980">
+          <section className="var-c">
+            <SectionContent variation="c" />
+          </section>
+        </dc-artboard>
+      </dc-section>
+    </dc-canvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+
+</body>
+</html>
