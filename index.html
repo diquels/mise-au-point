@@ -748,15 +748,32 @@
     grid-template-columns: 1fr 1fr;
     max-width: 820px;
     margin: 0 auto 64px;
-    border-top: 1px solid rgba(14, 42, 71, 0.18);
-    border-bottom: 1px solid rgba(14, 42, 71, 0.18);
+    gap: 20px;
   }
   .price-block {
-    padding: 56px 40px;
+    background: #F1E8D8;
+    border: 1px solid #B87333;
+    padding: 48px 40px 40px;
     text-align: center;
-    border-left: 1px solid rgba(14, 42, 71, 0.18);
+    display: flex;
+    flex-direction: column;
   }
-  .price-block:first-child { border-left: none; }
+  .price-block .price-block-cta {
+    margin-top: auto;
+  }
+  .price-block-cta {
+    display: block;
+    margin-top: 28px;
+    padding: 14px 28px;
+    background: #B87333;
+    color: #FDFBF6;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    transition: background .2s;
+  }
+  .price-block-cta:hover { background: #a0652c; }
   .price-label {
     font-family: var(--serif);
     font-style: italic;
@@ -766,11 +783,11 @@
   }
   .price-amount {
     font-family: var(--serif);
-    font-size: 44px;
+    font-size: 52px;
     font-weight: 400;
     font-style: italic;
     line-height: 1;
-    color: var(--navy);
+    color: #0E2A47;
     margin-bottom: 14px;
   }
   .price-perperson {
@@ -848,9 +865,8 @@
 
   @media (max-width: 900px) {
     .pricing { padding: 80px 24px; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .price-block { border-left: none; border-top: 1px solid rgba(14, 42, 71, 0.18); padding: 40px 24px; }
-    .price-block:first-child { border-top: none; }
+    .pricing-grid { grid-template-columns: 1fr; gap: 16px; }
+    .price-block { border: 1px solid #B87333; padding: 40px 24px; }
     .price-amount { font-size: 38px; }
     .next-dates { padding: 24px 20px; }
     .next-dates-list li { flex-direction: column; gap: 4px; }
@@ -1176,7 +1192,7 @@
       <p>Tu as des images qui vivent dans ta tête, parfois depuis des années. Tu sais les voir. Tu sais les sentir.</p>
       <p>Et pourtant, quand tu appuies sur le déclencheur, ce qui ressort ne ressemble pas vraiment à ce que tu voulais.</p>
       <p class="hero-closer">Tu n'es pas nulle en technique. Tu cherches quelqu'un qui la traduit dans ta langue.</p>
-      <a href="#tarifs" class="hero-anchor">Voir les prochaines dates</a>
+      <a href="#candidature" class="hero-anchor">Voir les prochaines dates</a>
       <p class="hero-anchor-note">À partir de 180 € · 2h30 · Bretagne Sud · samedi matin</p>
       <p class="hero-anchor-note">Inscription via formulaire personnel de 3 questions.</p>
     </div>
@@ -1184,6 +1200,18 @@
   <div class="hero-visual" role="img" aria-label="Paysage breton en lumière douce"></div>
   <img class="hero-wave" src="assets/wave-copper-on-blue.png" alt="" aria-hidden="true" />
 </header>
+
+<!-- ——— CE QUE CE N'EST PAS ——— -->
+<section class="not-that">
+  <div class="not-that-inner">
+    <p class="section-lede" style="text-align:center;">Avant tout le reste, voilà ce que cette matinée n'est pas. Parce que ça vaut la peine de le dire tout de suite.</p>
+    <h2 class="section-title">Ce que ce <em>n'est pas.</em></h2>
+    <div class="not-that-copy">
+      <p>Ce n'est pas un amphi. Ce n'est pas une course à la performance technique. Ce n'est pas une démonstration de matériel. Tu ne vas pas te retrouver avec dix personnes et dix boîtiers qui brillent plus que le tien.</p>
+      <p class="not-that-closer">C'est une table, deux chaises, une matinée, ton regard et le mien.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ——— 2. CE QUE TU VAS TROUVER ICI ——— -->
 <section class="found">
@@ -1195,22 +1223,6 @@
       <p>De ce que tu regardes, de ce qui te touche, de ce que tu as envie de montrer. Et c'est à partir de là qu'on remonte vers la technique : pas l'inverse.</p>
       <p>C'est ce que j'appelle <em class="accent">la technique traduite en émotions</em>. Chaque réglage est relié à un effet visuel concret, à une sensation, à une intention. Pas à un schéma abstrait que tu oublieras la semaine suivante.</p>
       <p>Et quand une image rate — ça arrive, et c'est tant mieux —, on ne la jette pas. On la regarde. Une photo qui ne ressemble pas à ce que tu voulais, ce n'est pas un échec : c'est une matière. Elle te dit ce qui s'est passé entre ton intention et ton geste. C'est exactement là qu'on apprend.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ——— 3. QUI JE SUIS ——— -->
-<section class="about">
-  <div class="about-grid">
-    <div class="about-image" role="img" aria-label="Pierre Diquelou en situation d'enseignement"></div>
-    <div class="about-content">
-      <h2 class="section-title">Qui je suis <em>(et qui je ne suis pas).</em></h2>
-      <p><strong>Je pars du principe que tu as déjà un regard. Mon boulot, c'est de te donner les outils pour le poser sur tes images.</strong></p>
-      <p>Je m'appelle Pierre Diquelou. Je suis photographe-formateur en Bretagne Sud, basé près de Quimperlé.</p>
-      <p>Je ne suis pas le photographe star qui va te faire rêver avec son travail. Je suis celui qui se place à côté de toi — pas devant — pour t'aider à trouver ton regard, pas à copier le mien.</p>
-      <p>Une voie d'escalade, ça se lit avant de se grimper. Tu observes les prises, tu visualises le mouvement, tu sens où ton corps va aller. La photo, c'est pareil. Sauf qu'ici, les prises s'appellent lumière, cadre, distance, exposition.</p>
-      <p>Mon métier, c'est de traduire. De prendre ce qui te semble flou, technique, intimidant, et de te le rendre dans une forme que ta sensibilité peut attraper. Avec des exemples concrets, parfois des comparaisons avec la montagne ou le sport — pas par coquetterie, parce que ça marche mieux qu'un tableau de réglages.</p>
-      <p>(Et si je te ressers une analogie d'escalade pour la troisième fois de la matinée, tu peux me le faire remarquer.)</p>
     </div>
   </div>
 </section>
@@ -1273,6 +1285,22 @@
   </div>
 </section>
 
+<!-- ——— 3. QUI JE SUIS ——— -->
+<section class="about">
+  <div class="about-grid">
+    <div class="about-image" role="img" aria-label="Pierre Diquelou en situation d'enseignement"></div>
+    <div class="about-content">
+      <h2 class="section-title">Qui je suis <em>(et qui je ne suis pas).</em></h2>
+      <p><strong>Je pars du principe que tu as déjà un regard. Mon boulot, c'est de te donner les outils pour le poser sur tes images.</strong></p>
+      <p>Je m'appelle Pierre Diquelou. Je suis photographe-formateur en Bretagne Sud, basé près de Quimperlé.</p>
+      <p>Je ne suis pas le photographe star qui va te faire rêver avec son travail. Je suis celui qui se place à côté de toi — pas devant — pour t'aider à trouver ton regard, pas à copier le mien.</p>
+      <p>Une voie d'escalade, ça se lit avant de se grimper. Tu observes les prises, tu visualises le mouvement, tu sens où ton corps va aller. La photo, c'est pareil. Sauf qu'ici, les prises s'appellent lumière, cadre, distance, exposition.</p>
+      <p>Mon métier, c'est de traduire. De prendre ce qui te semble flou, technique, intimidant, et de te le rendre dans une forme que ta sensibilité peut attraper. Avec des exemples concrets, parfois des comparaisons avec la montagne ou le sport — pas par coquetterie, parce que ça marche mieux qu'un tableau de réglages.</p>
+      <p>(Et si je te ressers une analogie d'escalade pour la troisième fois de la matinée, tu peux me le faire remarquer.)</p>
+    </div>
+  </div>
+</section>
+
 <!-- ——— 6. SOLO OU DUO ——— -->
 <section class="solo-duo">
   <div class="section-head">
@@ -1306,7 +1334,7 @@
 
 <!-- ——— 7. TÉMOIGNAGE ——— -->
 <section class="testimonial">
-  <div class="testimonial-eyebrow">Elles sont passées par là</div>
+  <div class="testimonial-eyebrow">Ce qu'en dit Linda, après sa Mise au Point.</div>
   <p class="section-lede" style="text-align:center;max-width:680px;margin:0 auto 48px;">Pro en devenir, photographe amateur depuis longtemps, ou simplement curieuse de ton appareil — l'atelier se passe pareil. Voici ce que Linda en a dit après sa Mise au Point.</p>
   <div class="testimonial-inner">
     <div class="testimonial-photo" role="img" aria-label="Portrait de Linda Assandri-Grimout"></div>
@@ -1320,15 +1348,10 @@
   </div>
 </section>
 
-<!-- ——— CE QUE CE N'EST PAS + FAQ ——— -->
+<!-- ——— FAQ ——— -->
 <section class="not-that">
   <div class="not-that-inner">
-    <div class="not-that-eyebrow">Avant de t'inscrire</div>
-    <h2 class="section-title">Ce que ce <em>n'est pas.</em></h2>
-    <div class="not-that-copy">
-      <p>Ce n'est pas un amphi. Ce n'est pas une course à la performance technique. Ce n'est pas une démonstration de matériel. Tu ne vas pas te retrouver avec dix personnes et dix boîtiers qui brillent plus que le tien.</p>
-      <p class="not-that-closer">C'est une table, deux chaises, une matinée, ton regard et le mien.</p>
-    </div>
+    <div class="not-that-eyebrow">Avant de réserver, voilà les questions fréquentes</div>
     <div class="faq" role="list">
       <details class="faq-item" role="listitem">
         <summary>
@@ -1385,11 +1408,13 @@
     <div class="price-block">
       <div class="price-label">Solo</div>
       <div class="price-amount">180&nbsp;€</div>
+      <a href="#candidature" class="price-block-cta">Répondre aux questions</a>
     </div>
     <div class="price-block">
       <div class="price-label">Duo</div>
       <div class="price-amount">300&nbsp;€</div>
       <div class="price-perperson">soit 150&nbsp;€/personne</div>
+      <a href="#candidature" class="price-block-cta">Répondre aux questions</a>
     </div>
   </div>
   <div class="pricing-copy">
