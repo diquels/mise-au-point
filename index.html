@@ -7,16 +7,17 @@
 <meta name="description" content="Atelier photo terrain en Bretagne Sud. 2h30 en extérieur pour apprendre à faire sortir les images que tu as en tête." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy:      #0E2A47;
-    --copper:    #B87333;
-    --sand:      #D9C7A6;
-    --sand-soft: #E8DCC4;
-    --ivory:     #F1E8D8;
-    --gold:      #CBA24A;
-    --white:     #FDFBF6;
+    --navy:        #0E2A47;
+    --copper:      #B87333;        /* surfaces : bouton CTA, bordures, fonds tintés */
+    --copper-text: #9A5F2A;        /* texte cuivre — passe AA à 4.6:1 sur fonds clairs */
+    --sand:        #D9C7A6;
+    --sand-soft:   #E8DCC4;
+    --ivory:       #F1E8D8;
+    --gold:        #CBA24A;
+    --white:       #FDFBF6;
     --serif: "Cormorant Garamond", Georgia, serif;
     --sans:  "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
     --mono:  "IBM Plex Mono", ui-monospace, monospace;
@@ -27,7 +28,7 @@
 
   body {
     font-family: var(--sans);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 17px;
     line-height: 1.65;
     color: var(--navy);
@@ -43,7 +44,6 @@
     line-height: 1.15;
   }
 
-  p { font-weight: 300; }
   a { color: var(--navy); text-decoration: none; }
 
   .container        { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 40px; }
@@ -54,7 +54,7 @@
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--copper);
+    color: var(--copper-text);
     margin-bottom: 24px;
   }
   .section-title {
@@ -69,7 +69,7 @@
     line-height: 1.7;
     color: rgba(14, 42, 71, 0.75);
   }
-  .accent { color: var(--copper); font-style: italic; }
+  .accent { color: var(--copper-text); font-style: italic; }
 
   .btn-copper {
     display: inline-block;
@@ -94,13 +94,51 @@
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     align-items: center;
     gap: 80px;
-    padding: 180px 64px 140px;
-    background: var(--white);
+    padding: 140px 64px 200px;
+    background: var(--navy);
+    color: var(--white);
     overflow: hidden;
+  }
+  .hero-courbe {
+    position: absolute;
+    top: 24px;
+    left: -120px;
+    width: 240px;
+    height: auto;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+    transform: scaleX(-1);
+  }
+  .hero-boussole {
+    position: absolute;
+    bottom: 220px;
+    left: 32%;
+    transform: translateX(-50%);
+    width: 380px;
+    height: auto;
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: center bottom;
+    pointer-events: none;
+    z-index: 1;
+    display: block;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 35%, #000 70%);
+            mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 35%, #000 70%);
   }
   .hero-inner {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 640px;
     justify-self: end;
     width: 100%;
@@ -110,8 +148,8 @@
     font-size: 12px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--copper);
-    margin-bottom: 56px;
+    color: var(--gold);
+    margin-bottom: 36px;
     display: flex;
     align-items: center;
     gap: 14px;
@@ -120,21 +158,22 @@
     content: "";
     display: inline-block;
     width: 36px; height: 1px;
-    background: var(--copper);
+    background: var(--gold);
   }
   .hero h1 {
     font-size: clamp(40px, 5.2vw, 68px);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.08;
-    margin-bottom: 56px;
+    margin-bottom: 36px;
     letter-spacing: -0.015em;
     max-width: 14ch;
+    color: var(--gold);
   }
-  .hero h1 em { font-style: italic; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
   .hero-copy p {
     font-size: 17px;
     line-height: 1.75;
-    color: rgba(14, 42, 71, 0.82);
+    color: rgba(253, 251, 246, 0.85);
     margin-bottom: 20px;
     max-width: 560px;
   }
@@ -145,7 +184,7 @@
     font-size: 22px !important;
     font-style: italic;
     line-height: 1.5 !important;
-    color: var(--navy) !important;
+    color: var(--white) !important;
     max-width: 480px;
   }
   .hero-anchor {
@@ -160,31 +199,35 @@
     color: var(--copper);
     padding-bottom: 3px;
     border-bottom: 1px solid var(--copper);
-    transition: gap 0.25s ease;
+    transition: gap 0.25s ease, color 0.2s ease, border-color 0.2s ease;
   }
   .hero-anchor::after {
     content: "↓";
     font-size: 13px;
     letter-spacing: 0;
+    transform: translateY(-1px);
     transition: transform 0.25s ease;
   }
   .hero-anchor:hover { gap: 14px; }
-  .hero-anchor:hover::after { transform: translateY(3px); }
+  .hero-anchor:hover::after { transform: translateY(2px); }
   .hero-anchor-note {
     margin-top: 14px;
     font-family: var(--mono);
     font-size: 12px;
     letter-spacing: 0.04em;
-    color: rgba(14, 42, 71, 0.6);
+    color: rgba(253, 251, 246, 0.55);
     line-height: 1.5;
   }
   .hero-visual {
+    position: relative;
+    z-index: 2;
     align-self: stretch;
     min-height: 520px;
     background-image: url("assets/hero-bretagne.png");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 1px rgba(203, 162, 74, 0.2);
   }
 
   /* ————— CE QUE TU VAS TROUVER ICI ————— */
@@ -272,13 +315,27 @@
 
   /* ————— MANIFESTE ————— */
   .manifesto {
-    background: #EFE4CC;
-    padding: 120px 40px;
+    background: var(--navy);
+    padding: 110px 40px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .manifesto-courbe {
+    position: absolute;
+    top: 60px;
+    right: -60px;
+    width: 240px;
+    height: auto;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
   }
   .manifesto-inner {
     max-width: 960px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
   }
   .manifesto p {
     font-family: var(--serif);
@@ -286,8 +343,12 @@
     font-weight: 300;
     font-size: clamp(26px, 3.4vw, 40px);
     line-height: 1.35;
-    color: var(--navy);
+    color: var(--white);
     letter-spacing: -0.005em;
+  }
+  .manifesto p .accent {
+    color: var(--gold);
+    font-style: italic;
   }
 
   @media (max-width: 900px) {
@@ -338,6 +399,92 @@
   @media (max-width: 900px) {
     .miseaupoint { padding: 80px 24px; }
     .miseaupoint-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  .miseaupoint-flow {
+    margin-top: 36px;
+    padding: 32px 36px;
+    background: rgba(184, 115, 51, 0.04);
+    border-left: 2px solid var(--copper);
+  }
+  .miseaupoint-flow-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper-text);
+    margin-bottom: 24px;
+  }
+  .miseaupoint-flow-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .miseaupoint-flow-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--navy);
+  }
+  .miseaupoint-flow-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--copper-text);
+    line-height: 1.2;
+  }
+  @media (max-width: 900px) {
+    .miseaupoint-flow { padding: 24px 22px; margin-top: 28px; }
+  }
+
+  .miseaupoint-takeaway {
+    margin-top: 28px;
+    padding: 28px 32px;
+    background: var(--white);
+    border: 1px solid rgba(14, 42, 71, 0.14);
+  }
+  .miseaupoint-takeaway-label {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 14px !important;
+  }
+  .miseaupoint-takeaway-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .miseaupoint-takeaway-list li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(14, 42, 71, 0.85);
+    padding-left: 18px;
+    position: relative;
+  }
+  .miseaupoint-takeaway-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--copper-text);
+  }
+  @media (max-width: 900px) {
+    .miseaupoint-takeaway { padding: 22px 22px; }
+  }
+
+  .page-signature-mark {
+    background: var(--white);
+    text-align: center;
+    padding: 40px 0 16px;
   }
 
   /* ————— SOLO OU DUO ————— */
@@ -427,7 +574,7 @@
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--copper);
+    color: var(--copper-text);
     text-align: center;
     margin-bottom: 72px;
   }
@@ -503,7 +650,7 @@
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--copper);
+    color: var(--copper-text);
     margin-bottom: 20px;
     text-align: center;
   }
@@ -546,7 +693,7 @@
     transition: color 0.2s ease;
   }
   .faq-item > summary::-webkit-details-marker { display: none; }
-  .faq-item > summary:hover { color: var(--copper); }
+  .faq-item > summary:hover { color: var(--copper-text); }
   .faq-q {
     font-family: var(--serif);
     font-size: 22px;
@@ -554,7 +701,7 @@
     color: var(--navy);
     line-height: 1.35;
   }
-  .faq-item > summary:hover .faq-q { color: var(--copper); }
+  .faq-item > summary:hover .faq-q { color: var(--copper-text); }
   .faq-icon {
     position: relative;
     width: 14px; height: 14px;
@@ -613,7 +760,7 @@
     font-family: var(--serif);
     font-style: italic;
     font-size: 20px;
-    color: var(--copper);
+    color: var(--copper-text);
     margin-bottom: 20px;
   }
   .price-amount {
@@ -629,7 +776,7 @@
     font-family: var(--mono);
     font-size: 12px;
     letter-spacing: 0.08em;
-    color: var(--copper);
+    color: var(--copper-text);
     margin-top: 8px;
   }
   .pricing-copy {
@@ -656,7 +803,7 @@
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--copper);
+    color: var(--copper-text);
     margin-bottom: 18px;
     text-align: center;
   }
@@ -692,7 +839,7 @@
     font-family: var(--mono);
     font-size: 10.5px;
     letter-spacing: 0.08em;
-    color: rgba(14, 42, 71, 0.55);
+    color: rgba(14, 42, 71, 0.75);
     text-align: center;
     text-transform: uppercase;
   }
@@ -741,7 +888,7 @@
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--copper);
+    color: var(--copper-text);
     margin-bottom: 14px;
   }
   .candidature-q-label {
@@ -756,7 +903,7 @@
   .candidature-q-hint {
     font-size: 14px;
     line-height: 1.6;
-    color: rgba(14, 42, 71, 0.65);
+    color: rgba(14, 42, 71, 0.75);
     margin-bottom: 18px;
     font-style: italic;
   }
@@ -878,12 +1025,14 @@
     text-align: center;
   }
   .signature-compass {
-    color: var(--gold);
-    opacity: 0.6;
-    margin-bottom: 24px;
+    width: 96px;
+    height: 96px;
+    opacity: 0.95;
+    margin: 0 auto 32px;
+    display: block;
   }
   .signature h2 {
-    font-size: clamp(26px, 3vw, 36px);
+    font-size: clamp(30px, 3.6vw, 44px);
     margin-bottom: 36px;
     line-height: 1.25;
   }
@@ -900,12 +1049,12 @@
     display: inline-block;
     font-size: 14px;
     letter-spacing: 0.05em;
-    color: var(--copper);
-    border-bottom: 1px solid var(--copper);
+    color: var(--copper-text);
+    border-bottom: 1px solid var(--copper-text);
     padding-bottom: 4px;
     transition: opacity .2s;
   }
-  .signature-link:hover { opacity: 0.7; color: var(--copper); }
+  .signature-link:hover { opacity: 0.7; color: var(--copper-text); }
 
   /* ————— FIN DE PAGE ————— */
   .closing {
@@ -949,7 +1098,7 @@
     flex-wrap: wrap;
   }
   footer a { color: rgba(14, 42, 71, 0.72); text-transform: uppercase; transition: color .2s; }
-  footer a:hover { color: var(--copper); }
+  footer a:hover { color: var(--copper-text); }
 
   @media (max-width: 900px) {
     .signature { padding: 80px 24px; }
@@ -986,7 +1135,7 @@
     content: "→";
     font-size: 14px;
     letter-spacing: 0;
-    color: var(--copper);
+    color: var(--copper-text);
   }
   .sticky-book.is-visible {
     opacity: 1;
@@ -1017,19 +1166,22 @@
 
 <!-- ——— HERO ——— -->
 <header class="hero">
+  <img class="hero-courbe" src="assets/courbe.png" alt="" aria-hidden="true" />
+  <img class="hero-boussole" src="assets/boussole.png" alt="" aria-hidden="true" />
   <div class="hero-inner">
     <div class="hero-eyebrow">Formation photo, Bretagne Sud</div>
     <h1>Tu as des images en tête.<br>Apprenons à les <em>faire sortir.</em></h1>
     <div class="hero-copy">
       <p>Tu as des images qui vivent dans ta tête, parfois depuis des années. Tu sais les voir. Tu sais les sentir.</p>
       <p>Et pourtant, quand tu appuies sur le déclencheur, ce qui ressort ne ressemble pas vraiment à ce que tu voulais.</p>
-      <p>Tu as déjà regardé des tutos, acheté un ebook, peut-être suivi une formation. Tu as entendu parler de diaphragme, d'ISO, de vitesse, et tu as fini par laisser ton appareil en mode automatique, parce qu'au moins en mode auto, tu fais des photos.</p>
       <p class="hero-closer">Tu n'es pas nulle en technique. Tu cherches quelqu'un qui la traduit dans ta langue.</p>
       <a href="#tarifs" class="hero-anchor">Voir les prochaines dates</a>
+      <p class="hero-anchor-note">À partir de 180 € · 2h30 · Bretagne Sud · samedi matin</p>
       <p class="hero-anchor-note">Inscription via formulaire personnel de 3 questions.</p>
     </div>
   </div>
   <div class="hero-visual" role="img" aria-label="Paysage breton en lumière douce"></div>
+  <img class="hero-wave" src="assets/wave-copper-on-blue.png" alt="" aria-hidden="true" />
 </header>
 
 <!-- ——— 2. CE QUE TU VAS TROUVER ICI ——— -->
@@ -1038,8 +1190,10 @@
     <h2 class="section-title">Ce que tu vas <em>trouver ici.</em></h2>
     <div class="found-copy">
       <p class="lead">Ici, on ne part pas de l'appareil. On part de toi.</p>
+      <p>Tu as déjà regardé des tutos, acheté un ebook, peut-être suivi une formation. Tu as entendu parler de diaphragme, d'ISO, de vitesse — et tu as fini par laisser ton appareil en mode auto, parce qu'au moins en mode auto, tu fais des photos (et c'est déjà beaucoup).</p>
       <p>De ce que tu regardes, de ce qui te touche, de ce que tu as envie de montrer. Et c'est à partir de là qu'on remonte vers la technique : pas l'inverse.</p>
       <p>C'est ce que j'appelle <em class="accent">la technique traduite en émotions</em>. Chaque réglage est relié à un effet visuel concret, à une sensation, à une intention. Pas à un schéma abstrait que tu oublieras la semaine suivante.</p>
+      <p>Et quand une image rate — ça arrive, et c'est tant mieux —, on ne la jette pas. On la regarde. Une photo qui ne ressemble pas à ce que tu voulais, ce n'est pas un échec : c'est une matière. Elle te dit ce qui s'est passé entre ton intention et ton geste. C'est exactement là qu'on apprend.</p>
     </div>
   </div>
 </section>
@@ -1050,16 +1204,19 @@
     <div class="about-image" role="img" aria-label="Pierre Diquelou en situation d'enseignement"></div>
     <div class="about-content">
       <h2 class="section-title">Qui je suis <em>(et qui je ne suis pas).</em></h2>
+      <p><strong>Je pars du principe que tu as déjà un regard. Mon boulot, c'est de te donner les outils pour le poser sur tes images.</strong></p>
       <p>Je m'appelle Pierre Diquelou. Je suis photographe-formateur en Bretagne Sud, basé près de Quimperlé.</p>
-      <p>Je ne suis pas le photographe star qui va te faire rêver avec son travail. Je suis celui qui se place à côté de toi, pas devant, pour t'aider à trouver ton regard : pas à copier le mien.</p>
-      <p>Mon travail, c'est de traduire. De prendre ce qui te semble flou, technique, intimidant, et de te le rendre dans une forme que ton cerveau et ta sensibilité peuvent attraper. Avec des exemples concrets, des analogies, parfois des comparaisons avec la montagne ou le sport, parce que la photo, comme une voie d'escalade, se lit avant de se grimper.</p>
-      <p>Je pars du principe que tu as déjà un regard. Mon boulot, c'est de te donner les outils pour le poser sur tes images.</p>
+      <p>Je ne suis pas le photographe star qui va te faire rêver avec son travail. Je suis celui qui se place à côté de toi — pas devant — pour t'aider à trouver ton regard, pas à copier le mien.</p>
+      <p>Une voie d'escalade, ça se lit avant de se grimper. Tu observes les prises, tu visualises le mouvement, tu sens où ton corps va aller. La photo, c'est pareil. Sauf qu'ici, les prises s'appellent lumière, cadre, distance, exposition.</p>
+      <p>Mon métier, c'est de traduire. De prendre ce qui te semble flou, technique, intimidant, et de te le rendre dans une forme que ta sensibilité peut attraper. Avec des exemples concrets, parfois des comparaisons avec la montagne ou le sport — pas par coquetterie, parce que ça marche mieux qu'un tableau de réglages.</p>
+      <p>(Et si je te ressers une analogie d'escalade pour la troisième fois de la matinée, tu peux me le faire remarquer.)</p>
     </div>
   </div>
 </section>
 
 <!-- ——— 4. MANIFESTE ——— -->
 <section class="manifesto">
+  <img class="manifesto-courbe" src="assets/courbe.png" alt="" aria-hidden="true" />
   <div class="manifesto-inner">
     <p><span class="accent">La technique traduite en émotions.</span> Pas de jargon, pas de recettes : un cadre simple pour que tu produises enfin les images que tu as en tête.</p>
   </div>
@@ -1074,7 +1231,42 @@
       <p>La Mise au Point, c'est un atelier terrain de 2h30, en Bretagne Sud, en extérieur.</p>
       <p>Un temps court, mais intense, où on sort ensemble - toi et moi, ou toi et une autre personne - et où on travaille sur ce que tu vois, ce que tu ressens, et ce que ton appareil en fait.</p>
       <p>Ce n'est pas un cours théorique. C'est une expérience guidée. On commence par des exercices sensoriels (regarder, sentir, écouter le paysage avant de le photographier), puis on traduit ça en choix techniques simples. Tu repars avec <em class="accent">une nouvelle relation à ton appareil</em> : moins de peur, plus de dialogue.</p>
+
+      <div class="miseaupoint-flow">
+        <h3 class="miseaupoint-flow-title">Comment se passe la matinée</h3>
+        <ol class="miseaupoint-flow-list">
+          <li>
+            <span class="miseaupoint-flow-num">1.</span>
+            <div>
+              <strong>On commence par regarder.</strong> Pas l'appareil. Le lieu. La lumière. Ce qui te touche, ce qui te bloque dans ce que tu as devant toi. Vingt à trente minutes de mise en présence avant de toucher au boîtier.
+            </div>
+          </li>
+          <li>
+            <span class="miseaupoint-flow-num">2.</span>
+            <div>
+              <strong>On traduit.</strong> Tu me racontes ce que tu veux faire ressentir d'une scène — et on cherche ensemble les deux ou trois réglages qui vont rendre ça visible. Pas plus. On teste, on regarde ce qui se passe entre ton intention et le rendu.
+            </div>
+          </li>
+          <li>
+            <span class="miseaupoint-flow-num">3.</span>
+            <div>
+              <strong>On ajuste, et tu repars avec.</strong> Une ou deux images à toi, un retour clair sur ce qui s'est passé entre les deux, et deux exercices simples à refaire chez toi sur ta pratique.
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="miseaupoint-takeaway">
+        <p class="miseaupoint-takeaway-label">Tu repartiras avec</p>
+        <ul class="miseaupoint-takeaway-list">
+          <li>un déclic concret sur ce qui te bloquait jusque-là (et c'est souvent une seule chose, pas dix),</li>
+          <li>deux exercices simples à refaire seule, calibrés sur ta pratique,</li>
+          <li>un regard neuf sur au moins une de tes images, qui ne sera plus jamais lue de la même façon.</li>
+        </ul>
+      </div>
+
       <p>Tous les niveaux sont accueillis. Tu peux venir en mode auto, tu peux venir avec trois réglages à moitié compris, tu peux venir en ayant lu dix livres. Je m'adapte à toi, pas l'inverse.</p>
+      <p><strong>Côté pratique :</strong> tu viens avec ton boîtier (ou ton téléphone), une tenue confortable et imperméable — Bretagne oblige —, de quoi marcher un peu, et un carnet si tu aimes écrire. La pluie n'arrête pas la séance : sauf vraie tempête, on y va.</p>
       <div class="miseaupoint-meta">2h30 · extérieur · Bretagne Sud · tous niveaux</div>
     </div>
   </div>
@@ -1083,18 +1275,20 @@
 <!-- ——— 6. SOLO OU DUO ——— -->
 <section class="solo-duo">
   <div class="section-head">
-    <h2 class="section-title">Solo ou Duo : <em>choisir l'expérience, pas le tarif.</em></h2>
-    <p class="section-lede">Il y a deux manières de vivre cet atelier. Ce ne sont pas deux tarifs. Ce sont deux expériences pédagogiques différentes.</p>
+    <h2 class="section-title">Solo ou Duo : <em>deux expériences différentes.</em></h2>
+    <p class="section-lede">Le prix est là, lisible. Mais avant de regarder le prix, regarde l'expérience : ce ne sont pas deux versions du même atelier, ce sont deux pédagogies différentes.</p>
   </div>
   <div class="formats-grid">
     <div class="format solo">
       <div class="format-inner">
+        <p><strong>Solo — 180 €</strong></p>
         <p>Tu es seule avec moi pendant 2h30. Tout le temps, toute l'attention, tout l'espace sont pour toi.</p>
         <p>C'est le format que je recommande si tu es du genre à te mettre en retrait dès qu'il y a quelqu'un d'autre, ou si ton projet photo est très personnel et que tu as besoin d'une bulle pour en parler vraiment.</p>
       </div>
     </div>
     <div class="format duo">
       <div class="format-inner">
+        <p><strong>Duo — 300 € (soit 150 € par personne)</strong></p>
         <p>Vous êtes deux, avec moi. Ce n'est pas une version économique du solo. C'est un format qui fonctionne parce qu'il ouvre une dynamique miroir : tu vois comment l'autre regarde, tu es challengée sans être jugée, tu apprends aussi en observant.</p>
         <p>Ça demande une qualité particulière : être prête à laisser de la place à un autre regard que le tien. Toutes les sensibilités ne sont pas faites pour ça, et c'est très bien.</p>
       </div>
@@ -1112,6 +1306,7 @@
 <!-- ——— 7. TÉMOIGNAGE ——— -->
 <section class="testimonial">
   <div class="testimonial-eyebrow">Elles sont passées par là</div>
+  <p class="section-lede" style="text-align:center;max-width:680px;margin:0 auto 48px;">Pro en devenir, photographe amateur depuis longtemps, ou simplement curieuse de ton appareil — l'atelier se passe pareil. Voici ce que Linda en a dit après sa Mise au Point.</p>
   <div class="testimonial-inner">
     <div class="testimonial-photo" role="img" aria-label="Portrait de Linda Assandri-Grimout"></div>
     <div class="testimonial-body">
@@ -1157,10 +1352,17 @@
       </details>
       <details class="faq-item" role="listitem">
         <summary>
-          <span class="faq-q">Je suis déjà photographe pro, je vais m'ennuyer ?</span>
+          <span class="faq-q">Je suis déjà photographe pro, est-ce que c'est pour moi ?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </summary>
-        <div class="faq-a"><p>La Mise au Point n'est probablement pas faite pour toi. Écris-moi, on regardera ensemble si la Série Signature correspond mieux.</p></div>
+        <div class="faq-a"><p>La Mise au Point est calibrée pour débloquer une pratique. Si tu es pro et que ce que tu cherches, c'est creuser une démarche personnelle, construire une série cohérente, sortir du commercial pour aller vers ton propre travail — c'est la <em class="accent">Série Signature</em> qui est faite pour ça. Écris-moi, on regarde ensemble si ça fait sens pour toi.</p></div>
+      </details>
+      <details class="faq-item" role="listitem">
+        <summary>
+          <span class="faq-q">Et s'il pleut ?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a"><p>Bretagne oblige, la pluie fait partie du jeu. Sauf vraie tempête, on y va : la lumière de pluie, c'est souvent celle qu'on cherche sans savoir le dire. Prévois juste une tenue qui te tient au sec et au chaud. Et si la météo nous force vraiment à décaler, on cale une autre date, simplement.</p></div>
       </details>
       <details class="faq-item" role="listitem">
         <summary>
@@ -1190,7 +1392,7 @@
     </div>
   </div>
   <div class="pricing-copy">
-    <p>Les ateliers ont lieu 4 samedis par an, en matinée (généralement 9h30 à 12h), entre Vannes et Quimper. Le lieu exact (plage, forêt, port, ville) est choisi avec toi dans l'email qui suit ta confirmation, en fonction de ce que tu as envie de photographier. Tu viens avec le boîtier que tu as, même un ancien, même un téléphone. Un carnet, si tu aimes écrire.</p>
+    <p>Les ateliers ont lieu plusieurs samedis par an, en matinée (généralement 9h30 à 12h), entre Vannes et Quimper. Le lieu exact (plage, forêt, port, ville) est choisi avec toi dans l'email qui suit ta confirmation, en fonction de ce que tu as envie de photographier. Tu viens avec le boîtier que tu as, même un ancien, même un téléphone. Un carnet, si tu aimes écrire.</p>
     <p>Pour rejoindre l'atelier, tu réponds à trois questions courtes ci-dessous. Je lis tes réponses, et je te reviens personnellement sous 48h — soit avec un lien pour confirmer ta place, soit pour te dire que ce n'est peut-être pas le bon endroit pour toi en ce moment, et pourquoi. Dans les deux cas, tu as une réponse de ma main.</p>
   </div>
   <aside class="next-dates" aria-label="Prochaines dates disponibles">
@@ -1222,21 +1424,15 @@
 
   <!--
     INTÉGRATION PORTAIL :
-    - Remplacer l'action="#" par l'endpoint de ton application
+    - Le JS intercepte normalement la soumission (fetch vers ENDPOINT). L'action ci-dessous sert de fallback si JS est désactivé.
     - Les champs nommés : q1 (texte libre), q2 (radio niveau), q3-format (radio solo/duo), q3-date (radio date), prenom, email
     - Méthode POST recommandée
   -->
-  <form class="candidature-form" action="#" method="post">
+  <!-- TODO ORDRE QUESTIONS : les attributs name="q1" et name="q2" conservent leur valeur originale pour ne pas casser l'endpoint backend. Visuellement, le QCM (q2) apparaît en Question 1 et le texte libre (q1) en Question 2. Adapter l'endpoint si nécessaire. -->
+  <form class="candidature-form" action="https://portail.pierrediquelou.fr/api/landing/mise-au-point" method="post">
 
     <div class="candidature-q">
       <div class="candidature-q-num">Question 1</div>
-      <label class="candidature-q-label" for="q1">Raconte-moi en quelques phrases ce que tu aimerais arriver à photographier, ou ce qui te bloque en ce moment.</label>
-      <p class="candidature-q-hint">Pas besoin d'être précise ou « bien formulée » — ce qui vient vient.</p>
-      <textarea class="candidature-textarea" id="q1" name="q1" rows="5" placeholder="…"></textarea>
-    </div>
-
-    <div class="candidature-q">
-      <div class="candidature-q-num">Question 2</div>
       <div class="candidature-q-label">Aujourd'hui, quand tu prends une photo, tu es plutôt…</div>
       <div class="candidature-options" role="radiogroup" aria-label="Ton rapport actuel à l'appareil">
         <label class="candidature-option"><input type="radio" name="q2" value="auto-stable" /><span>En mode auto, et je ne cherche pas à en sortir pour l'instant</span></label>
@@ -1248,11 +1444,18 @@
     </div>
 
     <div class="candidature-q">
+      <div class="candidature-q-num">Question 2</div>
+      <label class="candidature-q-label" for="q1">Raconte-moi en quelques phrases ce que tu aimerais arriver à photographier, ou ce qui te bloque en ce moment.</label>
+      <p class="candidature-q-hint">Pas besoin d'être précise ou « bien formulée » — ce qui vient vient.</p>
+      <textarea class="candidature-textarea" id="q1" name="q1" rows="5" placeholder="…"></textarea>
+    </div>
+
+    <div class="candidature-q">
       <div class="candidature-q-num">Question 3</div>
       <div class="candidature-q-label">Tu préfères venir…</div>
       <div class="candidature-options" role="radiogroup" aria-label="Solo ou Duo">
-        <label class="candidature-option"><input type="radio" name="q3-format" value="solo" /><span>Seule avec moi <em style="font-style:italic;color:rgba(14,42,71,0.6)">(Solo — 180&nbsp;€)</em></span></label>
-        <label class="candidature-option"><input type="radio" name="q3-format" value="duo" /><span>À deux, avec une amie ou une inconnue <em style="font-style:italic;color:rgba(14,42,71,0.6)">(Duo — 300&nbsp;€, soit 150&nbsp;€/personne)</em></span></label>
+        <label class="candidature-option"><input type="radio" name="q3-format" value="solo" /><span>Seule avec moi <em style="font-style:italic;color:rgba(14, 42, 71, 0.75)">(Solo — 180&nbsp;€)</em></span></label>
+        <label class="candidature-option"><input type="radio" name="q3-format" value="duo" /><span>À deux, avec une amie ou une inconnue <em style="font-style:italic;color:rgba(14, 42, 71, 0.75)">(Duo — 300&nbsp;€, soit 150&nbsp;€/personne)</em></span></label>
         <label class="candidature-option"><input type="radio" name="q3-format" value="indecise" /><span>Je ne sais pas encore, on en discute</span></label>
       </div>
       <div class="candidature-q-sublabel">Et parmi les prochaines dates, laquelle te conviendrait ?</div>
@@ -1285,21 +1488,14 @@
 <!-- ——— 9. SÉRIE SIGNATURE ——— -->
 <section class="signature">
   <div class="signature-inner">
-    <svg class="signature-compass" width="24" height="24" viewBox="0 0 40 40" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="0.8"/>
-      <circle cx="20" cy="20" r="1.2" fill="currentColor"/>
-      <line x1="20" y1="4" x2="20" y2="10" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="20" y1="30" x2="20" y2="36" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="4" y1="20" x2="10" y2="20" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="30" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="0.8"/>
-      <line x1="20" y1="20" x2="29" y2="11" stroke="currentColor" stroke-width="0.8"/>
-    </svg>
+    <img class="signature-compass" src="assets/boussole.png" alt="" aria-hidden="true" />
     <h2>Si tu cherches un accompagnement <em>plus profond.</em></h2>
     <p>La Mise au Point, c'est une porte d'entrée. Elle suffit largement si ce que tu veux, c'est débloquer ta pratique et repartir avec des repères concrets.</p>
-    <p>Mais peut-être que tu es à un autre endroit. Peut-être que tu veux aller au bout d'une série, construire une première vraie cohérence dans ton travail, et oser te dire photographe ou artiste sans te sentir imposteur.</p>
-    <p>Dans ce cas, j'ai un accompagnement individuel sur 8 semaines que j'appelle la <em class="accent">Série Signature</em>. Six séances en 1:1, une mini-série finale de 8 à 12 images, et du temps pour faire le pont entre ce que tu vois et ce que tu produis.</p>
+    <p>Mais peut-être que tu es à un autre endroit. Peut-être que tu veux aller au bout d'une série, construire une première vraie cohérence dans ton travail, et oser dire « je suis photographe » ou « je suis artiste » sans te sentir imposteur.</p>
+    <p>Dans ce cas, j'ai un accompagnement individuel sur 8 semaines que j'appelle la <em class="accent">Série Signature</em>. Six séances en 1:1, une mini-série finale de 8 à 12 images, et le temps de poser le pont entre ce que tu vois et ce que tu produis.</p>
     <p>Je t'en parle sur la page dédiée si tu veux creuser.</p>
-    <a href="#" class="signature-link">Découvrir la Série Signature</a>
+    <!-- TODO: lien à compléter -->
+    <a href="#" data-todo="à compléter par Pierre" class="signature-link">Découvrir la Série Signature</a>
   </div>
 </section>
 
@@ -1312,12 +1508,38 @@
   </div>
 </section>
 
+<div class="page-signature-mark" aria-hidden="true">
+  <svg width="56" height="56" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#0E2A47" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
+      <g stroke-width="0.78">
+        <line x1="50" y1="50" x2="50" y2="17.5" />
+        <line x1="50" y1="50" x2="64.099" y2="20.717" />
+        <line x1="50" y1="50" x2="75.367" y2="29.676" />
+        <line x1="50" y1="50" x2="81.672" y2="42.767" />
+        <line x1="50" y1="50" x2="81.672" y2="57.233" />
+        <line x1="50" y1="50" x2="75.367" y2="70.324" />
+        <line x1="50" y1="50" x2="64.099" y2="79.283" />
+        <line x1="50" y1="50" x2="50" y2="82.5" />
+        <line x1="50" y1="50" x2="35.901" y2="79.283" />
+        <line x1="50" y1="50" x2="24.633" y2="70.324" />
+        <line x1="50" y1="50" x2="18.328" y2="57.233" />
+        <line x1="50" y1="50" x2="18.328" y2="42.767" />
+        <line x1="50" y1="50" x2="24.633" y2="29.676" />
+        <line x1="50" y1="50" x2="35.901" y2="20.717" />
+      </g>
+      <polygon stroke-width="0.78" points="50,23.5 56.881,30.17 67.464,23.418 64.523,35.278 76.111,36.519 67.574,44.451 77,50 67.574,55.549 76.111,63.481 64.523,64.722 67.464,76.582 56.881,69.83 50,76.5 43.119,69.83 32.536,76.582 35.477,64.722 23.889,63.481 32.426,55.549 23,50 32.426,44.451 23.889,36.519 35.477,35.278 32.536,23.418 43.119,30.17" />
+      <polygon stroke-width="0.42" opacity="0.95" points="50,15.5 58.037,25.188 70.036,20.321 66.617,32.807 79.523,34.98 69.927,43.871 84,50 69.927,56.129 79.523,65.02 66.617,67.193 70.036,79.679 58.037,74.812 50,84.5 41.963,74.812 29.964,79.679 33.383,67.193 20.477,65.02 30.073,56.129 16,50 30.073,43.871 20.477,34.98 33.383,32.807 29.964,20.321 41.963,25.188" />
+      <circle cx="50" cy="50" r="2.3" stroke-width="0.78" />
+    </g>
+  </svg>
+</div>
+
 <footer>
   <ul>
-    <li><a href="#">Contact</a></li>
-    <li><a href="#">Série Signature</a></li>
-    <li><a href="#">Instagram</a></li>
-    <li><a href="#">Mentions légales</a></li>
+    <!-- TODO: lien à compléter --><li><a href="#" data-todo="à compléter par Pierre">Contact</a></li>
+    <!-- TODO: lien à compléter --><li><a href="#" data-todo="à compléter par Pierre">Série Signature</a></li>
+    <!-- TODO: lien à compléter --><li><a href="#" data-todo="à compléter par Pierre">Instagram</a></li>
+    <!-- TODO: lien à compléter --><li><a href="#" data-todo="à compléter par Pierre">Mentions légales</a></li>
   </ul>
 </footer>
 
@@ -1349,6 +1571,85 @@
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
+  })();
+</script>
+
+
+<script>
+  (function () {
+    const form = document.querySelector('.candidature-form');
+    if (!form) return;
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const ENDPOINT = 'https://portail.pierrediquelou.fr/api/landing/mise-au-point';
+
+    function showSuccess() {
+      form.innerHTML = `
+        <div style="text-align:center;padding:2.5rem 1rem;">
+          <p style="font-size:1.25rem;font-weight:600;color:#0e2a47;margin-bottom:.75rem;">Merci, j'ai bien reçu tes réponses&nbsp;!</p>
+          <p style="color:rgba(14,42,71,0.7);line-height:1.6;">Je te réponds personnellement sous 48h, à la main.</p>
+        </div>`;
+    }
+
+    function showError(msg) {
+      const existing = form.querySelector('.form-error-msg');
+      if (existing) existing.remove();
+      const div = document.createElement('div');
+      div.className = 'form-error-msg';
+      div.style.cssText = 'color:#c0392b;background:#fdf3f2;border:1px solid #f5c6c1;border-radius:6px;padding:.75rem 1rem;margin-bottom:1rem;font-size:.9rem;';
+      div.textContent = msg;
+      form.insertBefore(div, form.querySelector('.candidature-submit-wrap'));
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const prenom = form.querySelector('[name="prenom"]').value.trim();
+      const email = form.querySelector('[name="email"]').value.trim();
+
+      if (!prenom || !email) {
+        showError('Merci de renseigner ton prénom et ton email.');
+        return;
+      }
+
+      const q2El = form.querySelector('[name="q2"]:checked');
+      const q3FormatEl = form.querySelector('[name="q3-format"]:checked');
+      const q3DateEl = form.querySelector('[name="q3-date"]:checked');
+
+      const body = {
+        prenom,
+        email,
+        q1: form.querySelector('[name="q1"]').value.trim() || undefined,
+        q2: q2El ? q2El.value : undefined,
+        q3_format: q3FormatEl ? q3FormatEl.value : undefined,
+        q3_date: q3DateEl ? q3DateEl.value : undefined,
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Envoi en cours…';
+
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (res.ok) {
+          showSuccess();
+        } else {
+          const data = await res.json().catch(() => ({}));
+          const msg = data?.issues?.[0]?.message || data?.error || 'Une erreur est survenue, réessaie.';
+          showError(msg);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Envoyer mes réponses';
+        }
+      } catch {
+        showError('Impossible d\'envoyer le formulaire. Vérifie ta connexion et réessaie.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Envoyer mes réponses';
+      }
+    });
   })();
 </script>
 
