@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<title>Pierre Diquelou : Carrousel Instagram</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  html,body{margin:0;background:#1a1a1a;font-family:var(--font-body);color:#fff;}
+  .stage{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px 80px;gap:24px;}
+  .frame{width:540px;height:675px;overflow:hidden;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.5);}
+  .frame .scaler{transform:scale(0.5);transform-origin:top left;}
+  .nav{display:flex;align-items:center;gap:18px;font-family:var(--font-mono);font-size:13px;}
+  .nav button{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);padding:8px 14px;font-family:var(--font-mono);font-size:13px;cursor:pointer;letter-spacing:.04em;}
+  .nav button:hover{border-color:#CBA24A;color:#CBA24A;}
+  .nav .idx{opacity:.6;}
+  .dots{display:flex;gap:8px;}
+  .dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);transition:background .2s;}
+  .dots span.on{background:#CBA24A;}
+  .meta{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.5;}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="Components.jsx"></script>
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+function Carousel() {
+  const [i, setI] = useState(0);
+  const slides = [
+    { label: '01 Couverture', render: () => (
+      <Slide layout="A" label="01 Couverture">
+        <Curve corner="tl" width={240} opacity={0.85}/>
+        <div style={{position:'absolute',left:80,right:80,top:340,textAlign:'center'}}>
+          <Title size={104}>Contre-jour<br/>lisible</Title>
+          <div style={{marginTop:32}}><Pill>en 3 gestes…</Pill></div>
+          <div style={{marginTop:42}}><Subtitle>…et 50 cm de mouvement</Subtitle></div>
+        </div>
+      </Slide>
+    )},
+    { label: '02 Problème', render: () => (
+      <Slide layout="B" label="02 Problème ressenti">
+        <div style={{margin:'140px 80px 0',textAlign:'center'}}><Title size={84} align="center">Problème ressenti</Title></div>
+        <div style={{margin:'70px 110px 0'}}>
+          <Body>
+            <p style={{margin:0}}>Au <strong>contre-jour</strong>, l'écran s'éteint, les couleurs se ferment, le sujet décroche. Le <strong>geste</strong> manque, la <strong>mesure</strong> aussi.</p>
+            <p style={{marginTop:28}}>Trois ajustements simples, et la lumière redevient lisible, sans matériel supplémentaire.</p>
+          </Body>
+        </div>
+      </Slide>
+    )},
+    { label: '03 Question', render: () => (
+      <Slide layout="A" label="03 Question">
+        <Curve corner="tl" width={140} opacity={0.55}/>
+        <Curve corner="tr" width={170} opacity={0.55}/>
+        <div style={{position:'absolute',left:80,right:80,top:320}}><Question>Alors, pour toi le rendu est<br/>plutôt dur ou plutôt doux&nbsp;?</Question></div>
+        <div style={{position:'absolute',left:0,right:0,top:600,display:'flex',justifyContent:'center'}}><SocialIcons width={540}/></div>
+      </Slide>
+    )},
+    { label: '04 Finale', render: () => (
+      <Slide layout="A" label="04 Finale">
+        <Curve corner="tr" width={260} opacity={0.7}/>
+        <div style={{margin:'300px 80px 0',textAlign:'center'}}><Title size={84}>On en parle&nbsp;?</Title></div>
+        <div style={{margin:'40px 140px 0',color:'#fff',fontSize:30,lineHeight:1.5,textAlign:'center',opacity:.92}}>
+          Réserve un appel découverte de 30 minutes.<br/>Gratuit, sans engagement.
+        </div>
+        <div style={{position:'absolute',left:0,right:0,top:820,textAlign:'center'}}><CTAButton>Prendre rendez-vous</CTAButton></div>
+      </Slide>
+    )},
+  ];
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'ArrowRight') setI(p => Math.min(slides.length - 1, p + 1));
+      if (e.key === 'ArrowLeft')  setI(p => Math.max(0, p - 1));
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  return (
+    <div className="stage">
+      <div className="meta">Carrousel : Pierre Diquelou Photographie · 1080×1350 (affiché à 50%)</div>
+      <div className="frame">
+        <div className="scaler">{slides[i].render()}</div>
+      </div>
+      <div className="nav">
+        <button onClick={() => setI(p => Math.max(0, p - 1))} disabled={i === 0}>← précédent</button>
+        <div className="dots">{slides.map((_, k) => <span key={k} className={k === i ? 'on' : ''} onClick={() => setI(k)} style={{cursor:'pointer'}}/>)}</div>
+        <span className="idx">{String(i+1).padStart(2,'0')} / {String(slides.length).padStart(2,'0')} · {slides[i].label}</span>
+        <button onClick={() => setI(p => Math.min(slides.length - 1, p + 1))} disabled={i === slides.length - 1}>suivant →</button>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Carousel/>);
+</script>
+</body></html>

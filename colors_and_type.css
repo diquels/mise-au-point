@@ -1,0 +1,213 @@
+/* =============================================================
+   Pierre Diquelou Photographie — Foundations
+   Colors + typography tokens. Import this once at the top of any
+   slide / kit / mock. Max 3 colors per visual is a hard rule.
+   ============================================================= */
+
+/* Cormorant Garamond — local variable font files (uploadées par Pierre) */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-Italic-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Inter + IBM Plex Mono — toujours via Google Fonts (pas de fichier local fourni) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---------- COLOR ---------- */
+  /* Primary palette — drawn from the brand brief */
+  --pdp-bleu-nuit:  #0E2A47;   /* fond principal — covers, finales, intime */
+  --pdp-cuivre:     #B87333;   /* accent + CTA + fond contenu (waves) */
+  --pdp-sable:      #D9C7A6;   /* fond slides contenu doux, surfaces calmes */
+  --pdp-ivoire:     #F1E8D8;   /* fond documents (PDF, livrets) */
+  --pdp-or-doux:    #CBA24A;   /* ornements, filets, courbes */
+  --pdp-blanc:      #FFFFFF;   /* texte sur fond sombre, logo */
+
+  /* Subtle tonal extensions (ONLY for inner type/lines, never as a 4th hue) */
+  --pdp-bleu-deep:  #081A2E;   /* edge of bleu nuit, deep shadows */
+  --pdp-cuivre-deep:#9A5F26;   /* hover/press of cuivre */
+  --pdp-or-soft:    #E5D6A8;   /* dégradé léger de l'or sur fond clair */
+
+  /* ---------- SEMANTIC SURFACES ---------- */
+  --bg-cover:       var(--pdp-bleu-nuit);   /* Layout A — couverture / finale */
+  --bg-content:     var(--pdp-cuivre);      /* Layout B — slide pédagogique */
+  --bg-soft:        var(--pdp-sable);       /* slide-contenu calme alternative */
+  --bg-document:    var(--pdp-ivoire);      /* doc PDF, livret */
+
+  --fg-on-dark:     var(--pdp-blanc);
+  --fg-on-light:    var(--pdp-bleu-nuit);
+  --fg-accent-dark: var(--pdp-or-doux);     /* titre serif sur fond bleu */
+  --fg-accent-light:var(--pdp-bleu-nuit);   /* titre serif sur fond cuivre/sable */
+
+  --line-on-dark:   var(--pdp-or-doux);
+  --line-on-light:  var(--pdp-blanc);
+
+  /* ---------- TYPE ---------- */
+  --font-serif:  "Cormorant Garamond", "EB Garamond", Garamond, serif;
+  --font-body:   "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:   "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  /* Display / titre serif */
+  --t-display-size:   72px;
+  --t-display-weight: 600;       /* Semibold */
+  --t-display-leading:1.05;
+  --t-display-tracking:-0.005em;
+
+  --t-title-size:     48px;
+  --t-title-weight:   600;
+  --t-title-leading:  1.1;
+  --t-title-tracking: 0;
+
+  --t-subtitle-size:  28px;
+  --t-subtitle-weight:400;        /* Regular italic-friendly */
+  --t-subtitle-leading:1.25;
+
+  /* Corps Inter — TOUJOURS justifié, gras réservé aux mots-clés */
+  --t-body-size:      18px;
+  --t-body-weight:    400;
+  --t-body-leading:   1.55;
+  --t-body-align:     justify;
+
+  --t-lead-size:      22px;
+  --t-lead-weight:    400;
+  --t-lead-leading:   1.5;
+
+  --t-small-size:     14px;
+  --t-small-leading:  1.5;
+
+  /* Légendes / chiffres — IBM Plex Mono */
+  --t-caption-size:   13px;
+  --t-caption-weight: 400;
+  --t-caption-tracking:0.04em;
+
+  --t-handle-size:    14px;       /* @pierrediquelouphotographie */
+  --t-handle-weight:  400;
+  --t-handle-tracking:0.02em;
+
+  /* ---------- SPACING & GEOMETRY ---------- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+
+  --slide-pad: 64px;              /* gouttière standard 1080×1350 */
+  --slide-radius: 0;              /* slides = bord franc, pas de radius */
+
+  --pill-radius: 999px;           /* l'étiquette « en 3 gestes » */
+  --card-radius: 0;               /* identité = bord franc, photographique */
+
+  /* ---------- ANIMATION ---------- */
+  --ease-quiet: cubic-bezier(0.22, 0.61, 0.36, 1);  /* lent, photographique */
+  --dur-fade:   480ms;
+  --dur-slow:   720ms;
+}
+
+/* =============================================================
+   Semantic element styles (h1, h2, p, code…) — drop into any page.
+   Apply by adding class="pdp" to your root, OR import this and
+   the selectors below take effect globally.
+   ============================================================= */
+
+.pdp,
+.pdp-root {
+  font-family: var(--font-body);
+  font-size:   var(--t-body-size);
+  line-height: var(--t-body-leading);
+  color:       var(--fg-on-dark);
+  background:  var(--bg-cover);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.pdp h1, .pdp .h1 {
+  font-family: var(--font-serif);
+  font-weight: var(--t-display-weight);
+  font-size:   var(--t-display-size);
+  line-height: var(--t-display-leading);
+  letter-spacing: var(--t-display-tracking);
+  margin: 0;
+}
+
+.pdp h2, .pdp .h2 {
+  font-family: var(--font-serif);
+  font-weight: var(--t-title-weight);
+  font-size:   var(--t-title-size);
+  line-height: var(--t-title-leading);
+  margin: 0;
+}
+
+.pdp h3, .pdp .h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;             /* Regular pour hiérarchie douce */
+  font-size:   var(--t-subtitle-size);
+  line-height: var(--t-subtitle-leading);
+  font-style:  italic;
+  margin: 0;
+}
+
+.pdp p, .pdp .body {
+  font-family: var(--font-body);
+  font-weight: var(--t-body-weight);
+  font-size:   var(--t-body-size);
+  line-height: var(--t-body-leading);
+  text-align:  var(--t-body-align); /* JUSTIFIÉ par règle de marque */
+  hyphens: auto;
+  margin: 0;
+}
+
+.pdp p strong, .pdp .body strong {
+  font-weight: 700;             /* gras = mot-clé uniquement */
+}
+
+.pdp .lead {
+  font-size:   var(--t-lead-size);
+  line-height: var(--t-lead-leading);
+  text-align:  left;            /* lead = pas justifié, respiration */
+}
+
+.pdp small, .pdp .small {
+  font-size:   var(--t-small-size);
+  line-height: var(--t-small-leading);
+}
+
+.pdp code, .pdp kbd, .pdp .mono, .pdp .caption {
+  font-family: var(--font-mono);
+  font-size:   var(--t-caption-size);
+  font-weight: var(--t-caption-weight);
+  letter-spacing: var(--t-caption-tracking);
+}
+
+.pdp .handle {
+  font-family: var(--font-body);
+  font-size:   var(--t-handle-size);
+  letter-spacing: var(--t-handle-tracking);
+  color: var(--pdp-blanc);
+}
+
+/* « en 3 gestes… » badge (voir capture carrousel 1) */
+.pdp .pill {
+  display: inline-block;
+  padding: 6px 18px 7px;
+  border-radius: var(--pill-radius);
+  background: var(--pdp-blanc);
+  color: var(--pdp-bleu-nuit);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 22px;
+  font-style: italic;
+}
