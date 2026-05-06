@@ -66,7 +66,7 @@
     align-items: center;
     gap: 80px;
     padding: 180px 64px 140px;
-    background: var(--white);
+    background: var(--navy) url("assets/hero-sable.png") center bottom / cover no-repeat;
     overflow: hidden;
   }
   .hero-courbe {
@@ -92,19 +92,7 @@
     z-index: 0;
   }
   .hero-wave {
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    object-position: center bottom;
-    pointer-events: none;
-    z-index: 1;
-    display: block;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 35%, #000 70%);
-            mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 35%, #000 70%);
+    display: none;
   }
   .hero-inner {
     position: relative;
@@ -118,17 +106,18 @@
     font-size: 12px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--copper-text);
+    color: var(--gold);
     margin-bottom: 56px;
     display: flex;
     align-items: center;
     gap: 14px;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
   }
   .hero-eyebrow::before {
     content: "";
     display: inline-block;
     width: 36px; height: 1px;
-    background: var(--copper-text);
+    background: var(--gold);
   }
   .hero h1 {
     font-size: clamp(40px, 5.2vw, 68px);
@@ -137,10 +126,13 @@
     margin-bottom: 56px;
     letter-spacing: -0.015em;
     max-width: 14ch;
+    color: var(--white);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
   }
   .hero h1 em {
     font-style: italic;
-    color: var(--navy);
+    color: var(--sand-soft);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
   }
   .hero-copy {
     max-width: 560px;
@@ -148,8 +140,9 @@
   .hero-copy p {
     font-size: 17px;
     line-height: 1.75;
-    color: rgba(14, 42, 71, 0.82);
+    color: rgba(253, 251, 246, 0.93);
     margin-bottom: 20px;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
   }
   .hero-copy p:last-child { margin-bottom: 0; }
   .hero-anchor {
@@ -161,27 +154,28 @@
     font-size: 12px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--copper-text);
-    padding-bottom: 3px;
-    border-bottom: 1px solid var(--copper-text);
-    transition: gap 0.25s ease, color 0.2s ease, border-color 0.2s ease;
+    color: var(--navy);
+    background: var(--gold);
+    padding: 14px 28px;
+    border-bottom: none;
+    transition: gap 0.25s ease, background 0.2s ease, transform 0.15s ease;
   }
   .hero-anchor::after {
     content: "↓";
     font-size: 13px;
     letter-spacing: 0;
-    transform: translateY(-1px);
     transition: transform 0.25s ease;
   }
-  .hero-anchor:hover { gap: 14px; }
-  .hero-anchor:hover::after { transform: translateY(2px); }
+  .hero-anchor:hover { gap: 14px; background: #c8a96e; }
+  .hero-anchor:hover::after { transform: translateY(3px); }
   .hero-anchor-note {
     margin-top: 14px;
     font-family: var(--mono);
     font-size: 12px;
     letter-spacing: 0.04em;
-    color: rgba(14, 42, 71, 0.6);
+    color: rgba(253, 251, 246, 0.72);
     line-height: 1.5;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   }
   .hero-copy p.hero-closer {
     margin-top: 32px;
@@ -189,8 +183,9 @@
     font-size: 22px;
     font-style: italic;
     line-height: 1.5;
-    color: var(--navy);
+    color: var(--sand-soft);
     max-width: 480px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
   }
   .hero-visual {
     position: relative;
@@ -1044,6 +1039,7 @@
     transition: opacity .2s;
   }
   .signature-link:hover { opacity: 0.7; color: var(--copper-text); }
+  .signature-link--soon { opacity: 0.5; cursor: default; pointer-events: none; font-style: italic; }
 
   /* ————— FIN DE PAGE ————— */
   .closing {
@@ -1094,6 +1090,7 @@
   }
   footer a { color: rgba(14, 42, 71, 0.72); text-transform: uppercase; transition: color .2s; }
   footer a:hover { color: var(--copper-text); }
+  .footer-soon { color: rgba(14, 42, 71, 0.42); text-transform: uppercase; font-style: italic; font-size: inherit; }
 
   /* ————— STICKY BAR MOBILE ————— */
   .sticky-book {
@@ -1222,13 +1219,13 @@
       <p>Tu as des images qui vivent dans ta tête, parfois depuis des années. Tu sais les voir. Tu sais les sentir.</p>
       <p>Et pourtant, quand tu appuies sur le déclencheur, ce qui ressort ne ressemble pas vraiment à ce que tu voulais.</p>
       <p class="hero-closer">Tu n'es pas nulle en technique. Tu cherches quelqu'un qui la traduit dans ta langue.</p>
-      <a href="#candidature" class="hero-anchor">Voir les prochaines dates</a>
-      <p class="hero-anchor-note">À partir de 180 € · 2h30 · Bretagne Sud · samedi matin</p>
+      <a href="#candidature" class="hero-anchor">Réserver ma place</a>
+      <p class="hero-anchor-note">À partir de 180 € · 2h30 · Bretagne Sud · tous les samedis ou sur demande</p>
       <p class="hero-anchor-note">Inscription via formulaire personnel de 3 questions.</p>
     </div>
   </div>
   <div class="hero-visual" role="img" aria-label="Paysage breton en lumière douce"></div>
-  <img class="hero-wave" src="assets/wave-copper-on-blue.png" alt="" aria-hidden="true" />
+  <img class="hero-wave" src="assets/fond.jpg" alt="" aria-hidden="true" />
 </header>
 
 <!-- ——— CE QUE CE N'EST PAS ——— -->
@@ -1409,7 +1406,7 @@
           <span class="faq-q">Je suis déjà photographe pro, est-ce que c'est pour moi ?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </summary>
-        <div class="faq-a"><p>La Mise au Point est calibrée pour débloquer une pratique. Si tu es pro et que ce que tu cherches, c'est creuser une démarche personnelle, construire une série cohérente, sortir du commercial pour aller vers ton propre travail — c'est la <em class="accent">Série Signature</em> qui est faite pour ça. Écris-moi, on regarde ensemble si ça fait sens pour toi.</p></div>
+        <div class="faq-a"><p>La Mise au Point est calibrée pour débloquer une pratique. Si tu es pro et que ce que tu cherches, c'est creuser une démarche personnelle, construire une série cohérente, sortir du commercial pour aller vers ton propre travail — c'est la <em class="accent">Série Signature</em> qui est faite pour ça (bientôt disponible). Écris-moi, on regarde ensemble si ça fait sens pour toi.</p></div>
       </details>
       <details class="faq-item" role="listitem">
         <summary>
@@ -1448,19 +1445,19 @@
     </div>
   </div>
   <div class="pricing-copy">
-    <p>Les ateliers ont lieu plusieurs samedis par an, en matinée (généralement 9h30 à 12h), entre Vannes et Quimper. Le lieu exact (plage, forêt, port, ville) est choisi avec toi dans l'email qui suit ta confirmation, en fonction de ce que tu as envie de photographier. Tu viens avec le boîtier que tu as, même un ancien, même un téléphone. Un carnet, si tu aimes écrire.</p>
+    <p>Les ateliers ont lieu tous les samedis matin (généralement 9h30 à 12h), entre Vannes et Quimper. Tu peux aussi me demander un autre jour de la semaine : on cale ensemble une date qui t'arrange. Le lieu exact (plage, forêt, port, ville) est choisi avec toi dans l'email qui suit ta confirmation, en fonction de ce que tu as envie de photographier. Tu viens avec le boîtier que tu as, même un ancien, même un téléphone. Un carnet, si tu aimes écrire.</p>
     <p>Pour rejoindre l'atelier, tu réponds à trois questions courtes ci-dessous. Je lis tes réponses, et je te reviens personnellement sous 48h, soit avec un lien pour confirmer ta place, soit pour te dire que ce n'est peut-être pas le bon endroit pour toi en ce moment, et pourquoi. Dans les deux cas, tu as une réponse de ma main.</p>
   </div>
-  <aside class="next-dates" aria-label="Prochaines dates disponibles">
-    <div class="next-dates-label">Prochaines dates disponibles</div>
+  <aside class="next-dates" aria-label="Disponibilités">
+    <div class="next-dates-label">Disponibilités</div>
     <ul class="next-dates-list">
       <li>
-        <span class="next-dates-date">Sam. 13 juin 2026</span>
+        <span class="next-dates-date">Tous les samedis matin</span>
         <span class="next-dates-meta">9h30 — 12h · Bretagne Sud</span>
       </li>
       <li>
-        <span class="next-dates-date">Sam. 19 sept. 2026</span>
-        <span class="next-dates-meta">9h30 — 12h · Bretagne Sud</span>
+        <span class="next-dates-date">Sur demande</span>
+        <span class="next-dates-meta">Un autre jour qui t'arrange ? On s'adapte.</span>
       </li>
     </ul>
     <div class="next-dates-foot">Lieu précis calé avec toi après inscription.</div>
@@ -1511,12 +1508,6 @@
         <label class="candidature-option"><input type="radio" name="q3-format" value="duo" /><span>À deux, avec une amie ou une inconnue <em style="font-style:italic;color:rgba(14, 42, 71, 0.75)">(Duo — 300&nbsp;€, soit 150&nbsp;€/personne)</em></span></label>
         <label class="candidature-option"><input type="radio" name="q3-format" value="indecise" /><span>Je ne sais pas encore, on en discute</span></label>
       </div>
-      <div class="candidature-q-sublabel">Et parmi les prochaines dates, laquelle te conviendrait ?</div>
-      <div class="candidature-options" role="radiogroup" aria-label="Date préférée">
-        <label class="candidature-option"><input type="radio" name="q3-date" value="juin-2026" /><span>Sam. 13 juin 2026</span></label>
-        <label class="candidature-option"><input type="radio" name="q3-date" value="sept-2026" /><span>Sam. 19 sept. 2026</span></label>
-        <label class="candidature-option"><input type="radio" name="q3-date" value="plus-tard" /><span>Aucune des deux pour l'instant, je veux être prévenue des suivantes</span></label>
-      </div>
     </div>
 
     <div class="candidature-fields">
@@ -1547,7 +1538,7 @@
     <p>Mais peut-être que tu es à un autre endroit. Peut-être que tu veux aller au bout d'une série, construire une première vraie cohérence dans ton travail, et oser dire « je suis photographe » ou « je suis artiste » sans te sentir imposteur.</p>
     <p>Dans ce cas, j'ai un accompagnement individuel sur 8 semaines que j'appelle la <em class="accent">Série Signature</em>. Six séances en 1:1, une mini-série finale de 8 à 12 images, et le temps de poser le pont entre ce que tu vois et ce que tu produis.</p>
     <p>Je t'en parle sur la page dédiée si tu veux creuser.</p>
-    <a href="#" data-todo="à compléter par Pierre" class="signature-link">Découvrir la Série Signature</a>
+    <a href="#" class="signature-link signature-link--soon" aria-disabled="true">Série Signature — bientôt disponible</a>
   </div>
 </section>
 
@@ -1589,9 +1580,9 @@
 <footer>
   <ul>
     <li><a href="#" data-todo="à compléter par Pierre">Contact</a></li>
-    <li><a href="#" data-todo="à compléter par Pierre">Série Signature</a></li>
-    <li><a href="#" data-todo="à compléter par Pierre">Instagram</a></li>
-    <li><a href="#" data-todo="à compléter par Pierre">Mentions légales</a></li>
+    <li><span class="footer-soon">Série Signature — bientôt disponible</span></li>
+    <li><a href="https://www.instagram.com/pierrediquelouphotographie/#" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="mentions-legales.html">Mentions légales</a></li>
   </ul>
 </footer>
 
@@ -1665,7 +1656,6 @@
 
       const q2El = form.querySelector('[name="q2"]:checked');
       const q3FormatEl = form.querySelector('[name="q3-format"]:checked');
-      const q3DateEl = form.querySelector('[name="q3-date"]:checked');
 
       const body = {
         prenom,
@@ -1673,7 +1663,6 @@
         q1: form.querySelector('[name="q1"]').value.trim() || undefined,
         q2: q2El ? q2El.value : undefined,
         q3_format: q3FormatEl ? q3FormatEl.value : undefined,
-        q3_date: q3DateEl ? q3DateEl.value : undefined,
       };
 
       submitBtn.disabled = true;
